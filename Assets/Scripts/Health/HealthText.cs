@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
-public class HealthText : Health
+public class HealthText : HealthIndidcatorsBase
 {
     [SerializeField] private TextMeshProUGUI _text;
 
@@ -14,22 +14,7 @@ public class HealthText : Health
         _text = GetComponent<TextMeshProUGUI>();
     }
 
-    private void Start()
-    {
-        _text.text = $"{Value} / {MaxValue}";
-    }
-
-    private void OnEnable()
-    {
-        ValueChanged += SetHealth;
-    }
-
-    private void OnDisable()
-    {
-        ValueChanged -= SetHealth;
-    }
-
-    protected override void SetHealth(float health, float maxHealth)
+    protected override void ShowValue(float health, float maxHealth)
     {
         _text.text = $"{health.ToString()} / {maxHealth.ToString()}";
     }

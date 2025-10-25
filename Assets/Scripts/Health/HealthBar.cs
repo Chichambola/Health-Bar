@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class HealthBar : Health
+public class HealthBar : HealthIndidcatorsBase
 {
     [SerializeField] private Slider _slider;
 
@@ -14,23 +14,7 @@ public class HealthBar : Health
         _slider = GetComponent<Slider>();
     }
 
-    private void Start()
-    {
-        _slider.value = Value;
-        _slider.maxValue = MaxValue;
-    }
-
-    private void OnEnable()
-    {
-        ValueChanged += SetHealth;
-    }
-
-    private void OnDisable()
-    {
-        ValueChanged -= SetHealth;
-    }
-
-    protected override void SetHealth(float health, float maxHealth)
+    protected override void ShowValue(float health, float maxHealth)
     {
        _slider.value = health;
        _slider.maxValue = maxHealth;

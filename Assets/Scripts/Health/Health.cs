@@ -6,12 +6,12 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float _maxHealth;
-    [SerializeField] private float _health;
+    [SerializeField] private float _currentHealth;
 
     public event Action<float, float> ValueChanged;
 
-    public bool IsAlive => _health > 0;
-    public float Value => _health;
+    public bool IsAlive => _currentHealth > 0;
+    public float Value => _currentHealth;
     public float MaxValue => _maxHealth;
 
     private void OnValidate()
@@ -23,11 +23,11 @@ public class Health : MonoBehaviour
     {
         if(healAmount > 0)
         {
-            _health += healAmount;
+            _currentHealth += healAmount;
 
             IsHealthMoreMaxHealth();
 
-            ValueChanged?.Invoke(_health, _maxHealth);
+            ValueChanged?.Invoke(_currentHealth, _maxHealth);
         }
     }
 
@@ -35,20 +35,18 @@ public class Health : MonoBehaviour
     {
         if (IsAlive && damage > 0)
         {
-            _health -= damage;
+            _currentHealth -= damage;
 
-            if (_health < 0)
-                _health = 0;
+            if (_currentHealth < 0)
+                _currentHealth = 0;
 
-            ValueChanged?.Invoke(_health, _maxHealth);
+            ValueChanged?.Invoke(_currentHealth, _maxHealth);
         }
     }
 
-    protected virtual void SetHealth(float health, float maxHealth) {  }
-
     private void IsHealthMoreMaxHealth()
     {
-        if (_health > _maxHealth)
-            _health = _maxHealth;
+        if (_currentHealth > _maxHealth)
+            _currentHealth = _maxHealth;
     }
 }

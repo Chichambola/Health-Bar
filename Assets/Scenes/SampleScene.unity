@@ -293,7 +293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3be303999d3d73542a95ca70d1525312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 15
+  Button: {fileID: 277263986}
+  Health: {fileID: 1726839039}
+  Value: 10
 --- !u!1 &503461555
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +457,6 @@ GameObject:
   - component: {fileID: 608155888}
   - component: {fileID: 608155889}
   - component: {fileID: 608155890}
-  - component: {fileID: 608155891}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -547,24 +548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9c542cef17efb4fa32deddc9773b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _health: 50
+  Health: {fileID: 1726839039}
   _slider: {fileID: 608155889}
---- !u!114 &608155891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 608155887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc177da1532014745966ec24893f7a6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healButton: {fileID: 277263989}
-  _damageButton: {fileID: 1910510892}
-  _health: {fileID: 608155890}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,7 +1234,6 @@ GameObject:
   - component: {fileID: 1598926781}
   - component: {fileID: 1598926783}
   - component: {fileID: 1598926782}
-  - component: {fileID: 1598926784}
   m_Layer: 5
   m_Name: HealthBarSmooth
   m_TagString: Untagged
@@ -1290,11 +1274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aad5e160ea669e468fe0063e98771f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _health: 1
+  Health: {fileID: 1726839039}
   _slider: {fileID: 1598926783}
   _smoothSpeed: 3
-  _speedDelay: 0.015
 --- !u!114 &1598926783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1346,21 +1328,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1598926784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598926780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc177da1532014745966ec24893f7a6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healButton: {fileID: 277263989}
-  _damageButton: {fileID: 1910510892}
-  _health: {fileID: 1598926782}
 --- !u!1 &1686977715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,7 +1340,6 @@ GameObject:
   - component: {fileID: 1686977719}
   - component: {fileID: 1686977718}
   - component: {fileID: 1686977717}
-  - component: {fileID: 1686977720}
   m_Layer: 5
   m_Name: HealthText
   m_TagString: Untagged
@@ -1412,8 +1378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93712b24c76fcb1489331940f2b33fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _health: 50
+  Health: {fileID: 1726839039}
   _text: {fileID: 1686977718}
 --- !u!114 &1686977718
 MonoBehaviour:
@@ -1512,21 +1477,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686977715}
   m_CullTransparentMesh: 1
---- !u!114 &1686977720
+--- !u!1 &1726839038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1726839040}
+  - component: {fileID: 1726839039}
+  m_Layer: 0
+  m_Name: Health
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1726839039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686977715}
+  m_GameObject: {fileID: 1726839038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc177da1532014745966ec24893f7a6d, type: 3}
+  m_Script: {fileID: 11500000, guid: a73540119a778a5408956cba019dc8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healButton: {fileID: 277263989}
-  _damageButton: {fileID: 1910510892}
-  _health: {fileID: 1686977717}
+  _maxHealth: 100
+  _currentHealth: 50
+--- !u!4 &1726839040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726839038}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 469.19446, y: 306.68466, z: -0.5747618}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1759035431
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1725,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df070c2ea0225ed43b7e36d5cce98f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  Button: {fileID: 1910510889}
+  Health: {fileID: 1726839039}
+  Value: 15
 --- !u!1 &1961915216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,3 +1811,4 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 979954080}
   - {fileID: 1759035434}
+  - {fileID: 1726839040}

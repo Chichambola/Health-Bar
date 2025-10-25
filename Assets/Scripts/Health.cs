@@ -11,8 +11,8 @@ public class Health : MonoBehaviour
     public event Action<float, float> ValueChanged;
 
     public bool IsAlive => _health > 0;
-    public float CurrentHealth => _health;
-    public float MaxHealth => _maxHealth;
+    public float Value => _health;
+    public float MaxValue => _maxHealth;
 
     private void OnValidate()
     {
@@ -21,16 +21,19 @@ public class Health : MonoBehaviour
 
     public void Heal(float healAmount)
     {
-        _health += healAmount;
+        if(healAmount > 0)
+        {
+            _health += healAmount;
 
-        IsHealthMoreMaxHealth();
+            IsHealthMoreMaxHealth();
 
-        ValueChanged?.Invoke(_health, _maxHealth);
+            ValueChanged?.Invoke(_health, _maxHealth);
+        }
     }
 
     public void TakeDamage(float damage)
     {
-        if (IsAlive)
+        if (IsAlive && damage > 0)
         {
             _health -= damage;
 
@@ -40,6 +43,8 @@ public class Health : MonoBehaviour
             ValueChanged?.Invoke(_health, _maxHealth);
         }
     }
+
+    protected virtual void SetHealth(float health, float maxHealth) {  }
 
     private void IsHealthMoreMaxHealth()
     {

@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class HealthBarSmooth : MonoBehaviour
+public class HealthBarSmooth : Health
 {
-    [SerializeField] private Health _health;
     [SerializeField] private Slider _slider;
     [SerializeField] private float _smoothSpeed;
+    [SerializeField] private float _speedDelay;
 
     private Coroutine _coroutine;
 
@@ -19,21 +19,21 @@ public class HealthBarSmooth : MonoBehaviour
 
     private void Start()
     {
-        _slider.value = _health.CurrentHealth;
-        _slider.maxValue = _health.MaxHealth;
+        _slider.value = Value;
+        _slider.maxValue = MaxValue;
     }
 
     private void OnEnable()
     {
-        _health.ValueChanged += SetHealth;
+        ValueChanged += SetHealth;
     }
 
     private void OnDisable()
     {
-        _health.ValueChanged -= SetHealth;
+        ValueChanged -= SetHealth;
     }
 
-    private void SetHealth(float health, float maxHealth)
+    protected override void SetHealth(float health, float maxHealth)
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);
@@ -46,7 +46,7 @@ public class HealthBarSmooth : MonoBehaviour
 
     private IEnumerator ChangeValueSmoothly(float health)
     {
-        var wait = new WaitForSecondsRealtime(0.05f);
+        var wait = new WaitForSecondsRealtime(_speedDelay);
 
         while (_slider.value != health) 
         {

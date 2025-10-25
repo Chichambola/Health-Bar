@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class HealthBar : MonoBehaviour
+public class HealthBar : Health
 {
-    [SerializeField] private Health _health;
     [SerializeField] private Slider _slider;
 
     private void Awake()
@@ -16,21 +16,21 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        _slider.value = _health.CurrentHealth;
-        _slider.maxValue = _health.MaxHealth;
+        _slider.value = Value;
+        _slider.maxValue = MaxValue;
     }
 
     private void OnEnable()
     {
-        _health.ValueChanged += SetHealth;
+        ValueChanged += SetHealth;
     }
 
     private void OnDisable()
     {
-        _health.ValueChanged -= SetHealth;
+        ValueChanged -= SetHealth;
     }
 
-    private void SetHealth(float health, float maxHealth)
+    protected override void SetHealth(float health, float maxHealth)
     {
        _slider.value = health;
        _slider.maxValue = maxHealth;

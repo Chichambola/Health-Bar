@@ -5,9 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
-public class HealthText : MonoBehaviour
+public class HealthText : Health
 {
-    [SerializeField] private Health _health;
     [SerializeField] private TextMeshProUGUI _text;
 
     private void Awake()
@@ -17,20 +16,20 @@ public class HealthText : MonoBehaviour
 
     private void Start()
     {
-        _text.text = $"{_health.CurrentHealth.ToString()} / {_health.MaxHealth.ToString()}";
+        _text.text = $"{Value} / {MaxValue}";
     }
 
     private void OnEnable()
     {
-        _health.ValueChanged += SetHealth;
+        ValueChanged += SetHealth;
     }
 
     private void OnDisable()
     {
-        _health.ValueChanged -= SetHealth;
+        ValueChanged -= SetHealth;
     }
 
-    private void SetHealth(float health, float maxHealth)
+    protected override void SetHealth(float health, float maxHealth)
     {
         _text.text = $"{health.ToString()} / {maxHealth.ToString()}";
     }
